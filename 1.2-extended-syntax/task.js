@@ -41,9 +41,9 @@ function askDrink(name,dateOfBirthday){
     //let age = today - yearOfBirth;
     let age = (todayFull - dateOfBirthday)/(60*60*24*1000*365);
     if (age >= 18) {
-        result = "Не желаете ли олд-фэшн, " + name;
+        result = `Не желаете ли олд-фэшн, ${name}?`;
     } else {
-        result = "Сожалею, " + name + ", но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!"
+        result = `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!"
     }
     // код для задачи №3 писать здесь
     return result;
