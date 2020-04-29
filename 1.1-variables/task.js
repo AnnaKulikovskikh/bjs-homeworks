@@ -17,7 +17,7 @@ function averageMark(a, g, p) {
 
 function sayHello(userName) {
 	let myName = userName;
-	massage = "Привет, мир! Меня зовут " + myName;
+	massage = `Привет, мир! Меня зовут ${myName}`;
 	answer = massage;
     // реализуйте здесь задание №2
     
@@ -28,9 +28,8 @@ function calculateFormula() {
 	let x = 2;
 	let y = 22;
 	let z = 0;
-	result = x * y + 5 * z + x - 1
-	returnResult = result;
+	let result = x * y + 5 * z + x - 1;
 	// реализуйте здесь задание №3
     
-    return returnResult;// ваш ответ;
+    return result;// ваш ответ;
 }
