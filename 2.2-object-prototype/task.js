@@ -25,6 +25,13 @@ function getAverageMark(marks) {
 function checkBirthday(birthday) {
     // код для задачи №3 писать 
     //now = date.setMilliseconds(ms);
-
+    now =  Date.now();
+    diff = now - birthday;
+    age = diff/31557600000;
+    if (age>=18) {
+      let verdict = true;
+    } else {
+      let verdict = false;
+    }
     return verdict;
 }
