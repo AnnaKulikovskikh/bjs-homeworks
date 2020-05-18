@@ -1,37 +1,30 @@
 function getAnimalSound(animal) {
-    if (isNaN(animal)) {
-        return null;
+    if (animal) {
+        return animal.sound;
     } else {
-        let animalSound = animal.sound;
-        return animalSound;
+        return null;
     }    
-    // код для задачи №1 писать здесь
-    // return animalSound;
+    
 }
+//let getAnimalSound = animal => animal.sound;
+// но при отсутствии anima null не вернет
 
 function getAverageMark(marks) {
     // код для задачи №2 писать здесь
-    let average = 0;
+    let summary = 0;
     for (let i of marks){
-        average += i;
+        summary += parseFloat(i);
     }
-    average = Math.round(average/marks.length);
-    if (isNaN(average)) {
+    const average = Math.round(summary/marks.length);
+    if (marks.length == 0) {
         average = 0;
     }    
     return average;
 }
 
+//let checkBirthday = birthday => (Date.now() - birthday)/31557600000 >=18;
 function checkBirthday(birthday) {
     // код для задачи №3 писать 
     //now = date.setMilliseconds(ms);
-    now =  Date.now();
-    diff = now - birthday;
-    age = diff/31557600000;
-    if (age>=18) {
-      let verdict = true;
-    } else {
-      let verdict = false;
-    }
-    return verdict;
+    return (Date.now() - birthday)/31557600000 >=18;
 }
