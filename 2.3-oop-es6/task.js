@@ -28,28 +28,54 @@ class Weapon  {
     }
 }
 
-
-
-class Arm extends Weapon {
-    constructor() {
-      this.name = name;
-      this.durability = 1/0;
-      this.range = range;
-    }
+class Bow extends Weapon {
+   constructior (durability) {
+    this.durability = 200;
   }
-  
-  const arm =  new Arm ('Рука',1,1/0,1);
-  const hairArm = new Arm('Волосатая лапа',5,2);
+}
+class Sword extends Weapon {
+    constructior (attack) {
+     this.attack = 500;
+    }
+}
+class Knife extends Weapon {
+      
+}
+class Staff extends Weapon {
+    constructior (durability) {
+     this.durability = 300;
+    }
+}
+const arm =  new Weapon ('Рука',1,1/0,1);     
+const bow =  new Bow('Лук',10,200,3);
+const sword =  new Sword('Меч',25,500,1);
+const knife =  new Knife('Нож',5,300,1);
+const staff =  new Staff('Посох',8,300,2);
 
+class LongBow extends Bow {
+  constructior (durability) {
+    super(durability);
+    }
 
-const arm =  new Weapon('Рука',1,1/0,1);
-const bow =  new Weapon('Лук',10,200,3);
-const sword =  new Weapon('Меч',25,500,1);
-const knife =  new Weapon('Нож',5,300,1);
-const staff =  new Weapon('Посох',8,300,2);
+}
+class PoleAxe extends Sword {
+   constructior (attack) {
+    super(attack);
+}
+class StormStaff extends Staff {
+   constructior (durability) {
+    super(durability);
+}
+const longBow = new LongBow('Длинный лук', 15, 4);
+const poleAxe = new PoleAxe('Секира', 27, 800);
+const stormStaff = new StormStaff('Посох бури', 10, 3);
 
-a = arm
+a = longBow;
 a.takeDamage(30);
 console.log(a.durability);
 console.log(a.getDamage());
 console.log(a.isBroken());
+
+
+
+
