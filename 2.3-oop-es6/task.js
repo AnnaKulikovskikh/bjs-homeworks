@@ -12,7 +12,7 @@ class Weapon  {
         if (this.durability < 0 ) {this.durability = 0};
     }
     getDamage() {
-      if (this.durability >= this.startDurability * 0.3) {
+      if (this.durability >= this.startDurability * 0.3 || this.durability == 1/0) {
         return this.attack;
        } else if (this.durability == 0) {
         return 0;
@@ -29,82 +29,101 @@ class Weapon  {
     }
 }
 
-class Bow extends Weapon {
-   constructior () {
-     this.durability = 200;
+class Sword extends Weapon {
+  constructor (weapon){
+    super(weapon);
+    this.range = 1;
   }
 }
-class Sword extends Weapon {
-    constructior (weapon) {
-     this.range = 1;
-    }
+
+class Bow extends Weapon {
+  constructor (weapon,shoot){
+    super(weapon);
+    this.range = 3;
+    this.shoot = shoot;
+  }
 }
 
 class Staff extends Weapon {
-    constructior (durability) {
-     this.durability = 300;
-    }
+  constructor (weapon){
+    super(weapon);
+    this.durability = 300;
+  }
 }
 
-const sword = new Sword({
-  name:'Старый меч',
-  attack: 20,
-  durability: 10,
-  range: 1,
-});
+class Knife extends Weapon {
+  constructor (weapon){
+    super(weapon);
+  }
+}
 
-const arm = new Weapon({
-  name:'Рука',
-  attack: 1,
-  durability: 1/0,
-  range: 1,
-});
-const bow = new Weapon({
-  name:'Лук',
-  attack: 10,
-  durability: 300,
-  range: 3,
-});
+class Arm extends Weapon {
+  constructor (weapon){
+    super(weapon);
+    this.durability = 1/0;
+  }
+}
+
 const sword1 = new Sword({
   name:'Меч',
   attack: 25,
   durability: 500,
+});
+const sword = new Sword({
+  name:'Старый меч',
+  attack: 20,
+  durability: 10,
+});
+const poleaxe = new Sword({
+  name:'Секира',
+  attack: 27,
+  durability: 800,
+});
+
+const arm = new Arm({
+  name:'Рука',
+  attack: 1,
   range: 1,
 });
-const knife = new Weapon({
+
+const bow = new Bow({
+  name:'Лук',
+  attack: 10,
+  durability: 300,
+}, true);
+
+const longBow = new Bow({
+  name: 'Длинный лук',
+  attack: 15,
+  durability: 800, 
+}, true)
+
+const knife = new Knife({
   name:'Нож',
   attack: 5,
   durability: 300,
   range: 1,
 });
-const staff = new Weapon({
+const staff = new Staff({
   name:'Посох',
   attack: 8,
-  durability: 300,
   range: 2,
 });
 
-class SpecialSword extends Sword {
+const stormStaff =  new Staff({
+  name:'Посох Бури',
+  attack: 10,
+  range:3,
+});
 
-}
+a = longBow;
+a.takeDamage(8);
+console.log(`range = ${a.range}`);
+console.log(`прочность после удара ${a.durability}`);
+console.log(`урон после удара ${a.getDamage()}`);
+console.log(`Сломан ${a.isBroken()}`);
+if (a.shoot) {console.log(`Стреляет ${a.shoot}`)};
 
-const poleaxe = new SpecialSword ({
-  name: 'Секира',
-  attack: 27,
-  durability: 800,
-})
-
-console.log (poleaxe);
-
-//class LongBow extends Bow {
-//  constructior (durability) {
-//    super(durability);
-//    }
-
-//class StormStaff extends Staff {
-//   constructior (durability) {
-//    super(durability);
-//}
 
 
 
