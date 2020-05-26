@@ -1,4 +1,3 @@
-// Задание 1,2
 class Weapon  {
   constructor (weapon){
     this.name = weapon.name;
@@ -31,36 +30,59 @@ class Weapon  {
 
 class Sword extends Weapon {
   constructor (weapon){
-    super(weapon);
-    this.range = 1;
+    super({
+      name: 'Меч',
+      attack: 25,
+      durability: 500,
+      range: 1,  
+    });
   }
 }
 
+const newSword = new Sword();
+console.log(`sword ${newSword.attack}`);
+
 class Bow extends Weapon {
-  constructor (weapon,shoot){
-    super(weapon);
-    this.range = 3;
-    this.shoot = shoot;
+  constructor (weapon){
+    super({
+      name: 'Лук',
+      attack: 10,
+      durability: 300,
+      range: 3,
+    });
   }
 }
 
 class Staff extends Weapon {
   constructor (weapon){
-    super(weapon);
-    this.durability = 300;
+    super({
+      name: 'Посох',
+      attack: 8,
+      durability: 300,
+      range: 2,
+    });
   }
 }
 
 class Knife extends Weapon {
   constructor (weapon){
-    super(weapon);
-  }
+     super({
+      name: 'Нож',
+      attack: 5,
+      durability: 300,
+      range: 1,
+    });
+  }  
 }
 
 class Arm extends Weapon {
   constructor (weapon){
-    super(weapon);
-    this.durability = 1/0;
+    super({
+      name: 'Рука',
+      attack: 1,
+      durability: 1/0,
+      range: 1,
+    });
   }
 }
 
@@ -69,46 +91,25 @@ const sword1 = new Sword({
   attack: 25,
   durability: 500,
 });
-const sword = new Sword({
-  name:'Старый меч',
-  attack: 20,
-  durability: 10,
-});
+const sword = new Sword();
 const poleaxe = new Sword({
   name:'Секира',
   attack: 27,
   durability: 800,
 });
 
-const arm = new Arm({
-  name:'Рука',
-  attack: 1,
-  range: 1,
-});
+const arm = new Arm();
 
-const bow = new Bow({
-  name:'Лук',
-  attack: 10,
-  durability: 300,
-}, true);
+const bow = new Bow();
 
 const longBow = new Bow({
   name: 'Длинный лук',
   attack: 15,
   durability: 800, 
-}, true)
+});
 
-const knife = new Knife({
-  name:'Нож',
-  attack: 5,
-  durability: 300,
-  range: 1,
-});
-const staff = new Staff({
-  name:'Посох',
-  attack: 8,
-  range: 2,
-});
+const knife = new Knife();
+const staff = new Staff();
 
 const stormStaff =  new Staff({
   name:'Посох Бури',
@@ -122,8 +123,6 @@ console.log(`range = ${a.range}`);
 console.log(`прочность после удара ${a.durability}`);
 console.log(`урон после удара ${a.getDamage()}`);
 console.log(`Сломан ${a.isBroken()}`);
-if (a.shoot) {console.log(`Стреляет ${a.shoot}`)};
-
 
 
 
@@ -202,4 +201,3 @@ console.log(log.getTotalAverage());
 //grade2[x] = [3,4];
 //grade2[y] = [5,4];
 //console.log(grade2);
-
