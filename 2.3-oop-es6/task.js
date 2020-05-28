@@ -132,7 +132,7 @@ class StudentLog {
   constructor (name,grade,subject){
     this.name = name;
     this.subject = [];
-    this.grade = [[],[],[],[],[],[],[],[],[],[],[],[]]; //как-то можно автоматически сделать его безразмерным?
+    this.grade = [];//[[],[],[],[],[],[],[],[],[],[],[],[]];
     this.subjectGrade = new Object();
   }
 
@@ -174,7 +174,7 @@ class StudentLog {
         s += 1;
       }
     }
-    return Math.round(sum/s);
+    return sum/s.toFixed(2);
   }
 }
 

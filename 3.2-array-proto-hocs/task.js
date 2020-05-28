@@ -1,24 +1,31 @@
-let arrHoh = [];
+let arrMem=[];
 let s = 0;
-
+let memory = [];
 
 function sum(...args) {
   sleep(300); 
+  console.log(`args ${args}`);
   return args.reduce((sum, arg) => {
     return sum += +arg;
   }, 0);
 }
 
-function hoh (suma) {
-  if (arrHoh.length >= 3) {
-    arrHoh[s] = suma;
+function memorize(fn, limit) {
+  if (arrMem.length >= limit) {
+    arrMem[s] = fn;
     s +=1;
-    if (s>=3) {s = 0};
+    if (s >= limit) {s = 0};
   } else {
-    arrHoh.push(suma);    
+    arrMem.push(fn);    
   }
-  return arrHoh;
+  return arrMem;
 }
+const mSum = memorize(sum(1,2), 5);
+console.log(mSum);
+console.log(memorize(sum(1,2,3),2));
+console.log(memorize(sum(4,5,6),2));
+console.log(memorize(sum(7,8,9),2));
+console.log(memorize(sum(10,12,13),3));
 
 function sleep(milliseconds) 
 {
@@ -26,15 +33,12 @@ function sleep(milliseconds)
   while (new Date().getTime() <= e) {}
 }
 
-console.log(hoh(sum(1,2,3)));
-console.log(hoh(sum(4,5,6)));
-console.log(hoh(sum(7,8,9)));
-console.log(hoh(sum(10,11,12)));
-console.log(hoh(sum(13,14,15)));
-console.log(hoh(sum(16,17,18)));
-console.log(hoh(sum(19,20,21)));
-
-
 function compareArrays(arr1,arr2){
   return arr1.length == arr2.length && arr1.every((v,i)=>v === arr2[i]);
 }
+
+console.log(compareArrays([8, 9], [6])); // false, разные значения
+console.log(compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5])); // false, разные значения
+console.log(compareArrays([9, 2, 4, 8, 2], [9, 2, 4])); // false, разные значения
+console.log(compareArrays([1, 2, 3], [2, 3, 1])); // false, разные индексы, хотя и одинаковые значения
+console.log(compareArrays([8, 1, 2], [8, 1, 2])); // true
