@@ -1,31 +1,35 @@
+class parseError extends Error {
+  constructor(message){
+    super(message);
+    this.name = "parseError";
+  }
+}
+
 const parseCount = (value) => {
-  let parsing = parseFloat(value);
-  console.log(isNaN(Number.parsing));
-  console.log(isNaN(Number.parseFloat(value)));
-  if (isNaN(Number.parseFloat(value))) {
-    throw new SyntaxError("Невалидное значение");
+  let parsing = Number.parseFloat(value);
+  if (isNaN(parsing)) {
+    throw new parseError("Невалидное значение");
   }  
-  return parseFloat(value);
+  return parsing;
 };
 
 
 const validateCount = (value) => {
   try {
-    answer = parseCount(value);
-    } catch(e) {
-      return value;
-    };
-  return Math.round(answer);  
+     return Math.round(parseCount(value,0));
+    } catch(err) {
+      return err.message;
+    }; 
 };
 
-validateCount('kjh');
+console.log(validateCount('3.14'));
 
 
 
 class Triangle {
   constructor (a,b,c) {
     if ( a + b < c || a + c < b || b + c < a) {
-      throw new SyntaxError("Таких треугольников не существует!");
+      throw new SyntaxError("Треугольник с такими сторонами не существует");
       }
       this.a = a;
       this.b = b;
@@ -44,10 +48,10 @@ class Triangle {
 class FalseTriangle extends Triangle {
  
   getPerimeter() {
-    return "Ошибка! Неправильный треугольник!";
+    return "Ошибка! Неправильный треугольник";
   }
   getArea(){
-    return "Ошибка! Неправильный треугольник!";
+    return "Ошибка! Неправильный треугольник";
   }
 }
 
@@ -60,7 +64,3 @@ function getTriangle(a,b,c){
 }
 
 getTriangle(10,15,27);
-//getTriangle(10,15,27);
-//const triangle = new Triangle (10,15,17);
-//console.log(triangle.getPerimeter());
-//console.log(triangle.getArea());
