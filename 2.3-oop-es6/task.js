@@ -86,6 +86,30 @@ class Arm extends Weapon {
   }
 }
 
+class LongBow extends Bow {
+  constructor (){
+    super();
+    this.name = 'Длнный лук';
+    this.attack = 15;
+    this.range = 4;
+  }
+}
+class Axe extends Sword {
+  constructor (){
+    super();
+    this.name = 'Секира';
+    this.attack = 27;
+    this.durability = 800;
+  }
+}
+class StormStaff extends Staff {
+  constructor (){
+    super();
+    this.name = 'Посох бури';
+    this.attack = 10;
+    this.range = 3;
+  }
+}
 const sword1 = new Sword({
   name:'Меч',
   attack: 25,
@@ -102,11 +126,8 @@ const arm = new Arm();
 
 const bow = new Bow();
 
-const longBow = new Bow({
-  name: 'Длинный лук',
-  attack: 15,
-  durability: 800, 
-});
+const longBow = new LongBow();
+alert(longBow);
 
 const knife = new Knife();
 const staff = new Staff();
@@ -116,6 +137,7 @@ const stormStaff =  new Staff({
   attack: 10,
   range:3,
 });
+
 
 a = longBow;
 a.takeDamage(8);
