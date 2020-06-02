@@ -1,4 +1,4 @@
-class Weapon  {
+  class Weapon  {
   constructor (weapon){
     this.name = weapon.name;
     this.attack = weapon.attack;
@@ -149,13 +149,14 @@ console.log(`Сломан ${a.isBroken()}`);
 
 
 
-// Задание 3
+//Задание 3
+// Получилось совсвм страшно
+s1 = 0;
+j1 = 0;
 class StudentLog {
-  constructor (name,grade,subject){
+  constructor (name,journal){
     this.name = name;
-    this.subject = [];
-    this.grade = [];//[[],[],[],[],[],[],[],[],[],[],[],[]];
-    this.subjectGrade = new Object();
+    this.journal = [];
   }
 
   getName() {
@@ -167,36 +168,49 @@ class StudentLog {
         alert('Неправильная оценка')
         return
       } 
-      if (this.subject.includes(subject) === false){
-        this.subject.push(subject);
+      
+      for (let i in this.journal){
+        if (this.journal[i].subject == subject){
+          this.journal[i].grade.push(grade);
+          j1 = 1;
+        }
       }
-      let i = this.subject.indexOf(subject);
-      this.grade[i].push(grade);
-      this.subjectGrade[subject] = this.grade[i];
-    return this.subjectGrade;
+      if (j1 == 0 || s1 == 0) {
+        this.journal[s1] = {
+          subject: subject,
+          grade: [grade]
+        }
+        s1+=1;
+      }
+      j1 = 0;  
+    return this.journal;
   }
 
   getAverageBySubject(subject){
-    if (this.subject.includes(subject) === false){
-      return 0;
-    }
     let sum = 0;
-    for (let i in this.subjectGrade[subject]) {
-      sum += this.subjectGrade[subject][i];
+    for (let g in this.journal) {
+      if (this.journal[g].subject == subject){
+        for (let i in this.journal[g].subject) {sum += this.journal[g].grade[i];
+        alert(`sum=${sum}`);
+        }
+        
+      return Math.round(sum/this.journal[g].grade.length);  
+      }
+      
     }
-    return Math.round(sum/this.subjectGrade[subject].length);
+    return 0;
   }
 
   getTotalAverage(){
     let sum = 0;
     let s = 0;
-    for (let i in this.subjectGrade){
-      for (let j in this.subjectGrade[i]){
-        sum += this.subjectGrade[i][j];
+    for (let i in this.journal){
+      for (let j in this.journal[i].grade){
+        sum += this.journal[i].grade[j];
         s += 1;
       }
     }
-    return sum/s.toFixed(2);
+    return sum/s.toFixed(1);
   }
 }
 
