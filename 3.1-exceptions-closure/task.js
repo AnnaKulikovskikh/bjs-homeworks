@@ -18,11 +18,11 @@ const validateCount = (value) => {
   try {
      return Math.round(parseCount(value,0));
     } catch(err) {
-      return err.message;
+      return err;
     }; 
 };
 
-console.log(validateCount('3.14'));
+console.log(validateCount('h12'));
 
 
 
@@ -36,22 +36,20 @@ class Triangle {
       this.c = c;
   }
   getPerimeter() {
-    return this.a + this.b + this.c;
+    try{
+      return this.a + this.b + this.c;
+    } catch (e) {
+      return "Ошибка! Неправильный треугольник";
+    }
   }
   getArea(){
-    let p = (this.a + this.b + this.c)/2;
-    let s = Math.sqrt(p*(p - this.a)*(p - this.b)*(p - this.c));
-    return Number(s.toFixed(3));
-  }
-}
-
-class FalseTriangle extends Triangle {
- 
-  getPerimeter() {
-    return "Ошибка! Неправильный треугольник";
-  }
-  getArea(){
-    return "Ошибка! Неправильный треугольник";
+    try{
+      let p = (this.a + this.b + this.c)/2;
+      let s = Math.sqrt(p*(p - this.a)*(p - this.b)*(p - this.c));
+      return Number(s.toFixed(3));
+    } catch(e){
+      return "Ошибка! Неправильный треугольник";
+    }
   }
 }
 
@@ -59,8 +57,19 @@ function getTriangle(a,b,c){
   try {
     return  new Triangle(a,b,c);
   } catch (e) {
-    return new FalseTriangle(a,b,c);
+    return "Ошибка! Неправильный треугольник";
+    //return {
+    //  a:a,
+    //  b:b;
+    //  c:c,  
+    //  getPerimeter: function(){console.log("Ошибка! Неправильный треугольник")},
+    //  getArea: function(){console.log("Ошибка! Неправильный треугольник")},
+    //}  
   }
 }
 
-getTriangle(10,15,27);
+//getTriangle(10,15,27);
+triangle = getTriangle(10,15,27);
+//const triangle = new Triangle (10,15,17);
+console.log(triangle.getPerimeter());
+console.log(triangle.getArea());
