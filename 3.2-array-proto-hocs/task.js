@@ -1,6 +1,5 @@
-let arrMem=[];
+
 let s = 0;
-let memory = [];
 
 function sum(...args) {
   sleep(300); 
@@ -11,21 +10,26 @@ function sum(...args) {
 }
 
 function memorize(fn, limit) {
-  if (arrMem.length >= limit) {
-    arrMem[s] = fn;
+  constructor(){
+    this.memory= [];
+  }
+  if (limit is undefined){
+    limit = 1
+  };
+  if (this.memory.length >= limit) {
+    this.memory[s] = fn;
     s +=1;
     if (s >= limit) {s = 0};
   } else {
-    arrMem.push(fn);    
+    this.memory.push(fn);    
   }
-  return arrMem;
+  return this.memory;
 }
-const mSum = memorize(sum(1,2), 5);
-console.log(mSum);
-console.log(memorize(sum(1,2,3),2));
-console.log(memorize(sum(4,5,6),2));
-console.log(memorize(sum(7,8,9),2));
-console.log(memorize(sum(10,12,13),3));
+console.log(memorize(sum,5));
+const mSum = memorize(sum, 5);
+console.log(sum(1,2,3));
+console.log(mSum(1,2,3));
+console.log(mSum(1,2,3));
 
 function sleep(milliseconds) 
 {
