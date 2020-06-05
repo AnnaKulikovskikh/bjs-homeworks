@@ -36,20 +36,12 @@ class Triangle {
       this.c = c;
   }
   getPerimeter() {
-    try{
       return this.a + this.b + this.c;
-    } catch (e) {
-      return "Ошибка! Неправильный треугольник";
-    }
   }
   getArea(){
-    try{
       let p = (this.a + this.b + this.c)/2;
       let s = Math.sqrt(p*(p - this.a)*(p - this.b)*(p - this.c));
       return Number(s.toFixed(3));
-    } catch(e){
-      return "Ошибка! Неправильный треугольник";
-    }
   }
 }
 
@@ -57,14 +49,12 @@ function getTriangle(a,b,c){
   try {
     return  new Triangle(a,b,c);
   } catch (e) {
-    return "Ошибка! Неправильный треугольник";
-    //return {
-    //  a:a,
-    //  b:b;
-    //  c:c,  
-    //  getPerimeter: function(){console.log("Ошибка! Неправильный треугольник")},
-    //  getArea: function(){console.log("Ошибка! Неправильный треугольник")},
-    //}  
+    //return "Ошибка! Неправильный треугольник";
+    return {
+      a,b,c,  
+      getPerimeter:() => "Ошибка! Неправильный треугольник",
+      getArea:() => "Ошибка! Неправильный треугольник",
+    }  
   }
 }
 
