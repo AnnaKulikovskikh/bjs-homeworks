@@ -1,35 +1,50 @@
-
-let s = 0;
-
+class userError extends Error {
+  constructor(message){
+    super(message);
+    this.name = "userError";
+  }
+}
 function sum(...args) {
   sleep(300); 
-  console.log(`args ${args}`);
+ // console.log(`args ${args}`);
   return args.reduce((sum, arg) => {
     return sum += +arg;
   }, 0);
 }
 
 function memorize(fn, limit) {
-  constructor(){
-    this.memory= [];
-  }
-  if (limit is undefined){
-    limit = 1
+  let count = 0;
+  const memory = [];
+  if (limit === undefined || limit ==0){
+     throw new userError("Не задано число сохраняемых значений");;
+     };
+  return  function innerFunc(...args){
+    //alert(`count=${count}`);
+    //alert(`длина массива=${memory.length}`);
+
+    let exist = memory.find(item => compareArrays(item.args,args));
+    if (exist != undefined){return exist.result};
+
+    if (memory.length == limit){
+      memory[count] = ({args: args, result: fn(...args)});
+      count ++;
+      if (count == limit){count = 0};
+    } else {
+      memory.push({args: args, result: fn(...args)});
+    }
+    alert(memory);
+    return fn(...args);
   };
-  if (this.memory.length >= limit) {
-    this.memory[s] = fn;
-    s +=1;
-    if (s >= limit) {s = 0};
-  } else {
-    this.memory.push(fn);    
-  }
-  return this.memory;
 }
-console.log(memorize(sum,5));
-const mSum = memorize(sum, 5);
-console.log(sum(1,2,3));
-console.log(mSum(1,2,3));
-console.log(mSum(1,2,3));
+const mSum = memorize(sum,4);
+alert(mSum(1,2,3));
+alert(mSum(4,5,6));
+alert(mSum(7,8));
+alert(mSum(1,2,3));
+alert(mSum(10,11,12));
+alert(mSum(13,14,15));
+const mSum1 = memorize(sum,3);
+alert(mSum1(6,4,9));
 
 function sleep(milliseconds) 
 {
@@ -40,9 +55,3 @@ function sleep(milliseconds)
 function compareArrays(arr1,arr2){
   return arr1.length == arr2.length && arr1.every((v,i)=>v === arr2[i]);
 }
-
-console.log(compareArrays([8, 9], [6])); // false, разные значения
-console.log(compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5])); // false, разные значения
-console.log(compareArrays([9, 2, 4, 8, 2], [9, 2, 4])); // false, разные значения
-console.log(compareArrays([1, 2, 3], [2, 3, 1])); // false, разные индексы, хотя и одинаковые значения
-console.log(compareArrays([8, 1, 2], [8, 1, 2])); // true
