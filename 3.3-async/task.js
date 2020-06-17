@@ -16,7 +16,7 @@ class AlarmClock{
           alarm.callback();
         }
       }
-      this.timerId = setInterval(() => this.alarmColletion.forEach(element => checkClock(element)),1000);  
+      this.timerId = setInterval(() => this.alarmCollection.forEach(element => checkClock(element)),1000);  
     }
   
     stop(){
